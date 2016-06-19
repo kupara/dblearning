@@ -1,26 +1,19 @@
 'use strict';
 
 module.exports = function (sequelize, DataTypes) {
-  var User =  sequelize.define('User', {
+  var Role =  sequelize.define('Role', {
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         unique: true,
         autoIncrement: true
       },
-      username: {
+      title: {
         type: DataTypes.STRING,
-        unique: true
-      },
-      email: {
-        type: DataTypes.STRING,
-        unique: true,
+        allowNull: false,
         validate: {
-          isEmail: true
+          isIn: ['admin', 'user', 'viewer', 'tester']
         }
-      },
-      password: {
-        type: DataTypes.STRING
       }
     }, {
       underscored: true,
